@@ -4,7 +4,7 @@ from odoo import models, fields
 class Waybill(models.Model):
     _name = "transport_waybill.waybill"
     _description = "Waybill"
-    _order = "id asc, name"
+    _order = "id desc, name"
 
     name = fields.Char(
         string="Number",
