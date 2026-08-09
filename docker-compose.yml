@@ -1,0 +1,77 @@
+x-odoo-common: &odoo-common
+  image: transport-odoo
+  build: .
+  restart: always
+  volumes:
+    - transport-odoo-web-data:/var/lib/odoo
+    - ./addons:/mnt/extra-addons
+    - ./conf/odoo.conf.tmpl:/etc/odoo/odoo.conf.tmpl
+  env_file:
+    - .env
+  depends_on:
+    transport_odoo_db:
+      condition: service_healthy
+  logging:
+    driver: "json-file"
+    options:
+      max-size: "10m"
+      max-file: "5"
+
+networks:
+  transport-net:
+    name: transport-net
+  proxy:
+    external: true
+
+volumes:
+  transport-odoo-web-data:
+  transport-odoo-db-data:
+
+services:
+  transport_odoo_db:
+    container_name: transport_odoo_db
+    image: postgres:17-alpine
+    restart: always
+    volumes:
+      - transport-odoo-db-data:/var/lib/postgresql/data/pgdata
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    networks:
+      - transport-net
+    healthcheck:
+      test: ['CMD-SHELL', "pg_isready -U ${POSTGRES_USER} -d ${DB_NAME:-postgres}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  transport_odoo:
+    <<: *odoo-common
+    container_name: transport_odoo
+    command: ["odoo", "-u", "transport_waybill", "--without-demo=True"]
+    expose:
+      - "${ODOO_HTTP_PORT:-8069}"
+
+    networks:
+      - transport-net
+      - proxy
+
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:${ODOO_HTTP_PORT:-8069}/web/login"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.transport-odoo.rule=Host(`${ODOO_HOST}`)"
+      - "traefik.http.services.transport-odoo.loadbalancer.server.port=${ODOO_HTTP_PORT:-8069}"
+      - "traefik.http.routers.transport-odoo.entrypoints=websecure"
+      - "traefik.http.routers.transport-odoo.tls=true"
+      - "traefik.http.routers.transport-odoo.tls.certresolver=le"
+      - "traefik.http.routers.transport-odoo.service=transport-odoo"

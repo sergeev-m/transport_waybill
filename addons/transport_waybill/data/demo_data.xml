@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============================================================
+         DRIVERS
+         ============================================================ -->
+
+    <record id="driver_ivanov" model="transport_waybill.driver">
+        <field name="name">Иванов Иван Иванович</field>
+        <field name="phone">+995 555 100 101</field>
+    </record>
+
+    <record id="driver_petrov" model="transport_waybill.driver">
+        <field name="name">Петров Пётр Сергеевич</field>
+        <field name="phone">+995 555 100 102</field>
+    </record>
+
+    <record id="driver_sidorov" model="transport_waybill.driver">
+        <field name="name">Сидоров Алексей Викторович</field>
+        <field name="phone">+995 555 100 103</field>
+    </record>
+
+    <record id="driver_kuznetsov" model="transport_waybill.driver">
+        <field name="name">Кузнецов Дмитрий Андреевич</field>
+        <field name="phone">+995 555 100 104</field>
+    </record>
+
+    <record id="driver_smirnov" model="transport_waybill.driver">
+        <field name="name">Смирнов Максим Олегович</field>
+        <field name="phone">+995 555 100 105</field>
+    </record>
+
+
+    <!-- ============================================================
+         VEHICLES
+         ============================================================ -->
+
+    <record id="vehicle_prius_001" model="transport_waybill.vehicle">
+        <field name="name">Toyota Prius</field>
+        <field name="license_plate">AA-001-AA</field>
+    </record>
+
+    <record id="vehicle_prius_002" model="transport_waybill.vehicle">
+        <field name="name">Toyota Prius</field>
+        <field name="license_plate">AA-002-AA</field>
+    </record>
+
+    <record id="vehicle_solaris_001" model="transport_waybill.vehicle">
+        <field name="name">Hyundai Solaris</field>
+        <field name="license_plate">BB-101-BB</field>
+    </record>
+
+    <record id="vehicle_rio_001" model="transport_waybill.vehicle">
+        <field name="name">Kia Rio</field>
+        <field name="license_plate">BB-102-BB</field>
+    </record>
+
+    <record id="vehicle_camry_001" model="transport_waybill.vehicle">
+        <field name="name">Toyota Camry</field>
+        <field name="license_plate">CC-501-CC</field>
+    </record>
+
+
+    <!-- ============================================================
+         WAYBILLS
+         ============================================================ -->
+
+    <record id="waybill_ivanov" model="transport_waybill.waybill">
+        <field name="name">ПЛ-00001</field>
+        <field name="date">2026-08-09</field>
+        <field name="driver_id" ref="driver_ivanov"/>
+        <field name="vehicle_id" ref="vehicle_prius_001"/>
+        <field name="state">draft</field>
+    </record>
+
+    <record id="waybill_petrov" model="transport_waybill.waybill">
+        <field name="name">ПЛ-00002</field>
+        <field name="date">2026-08-09</field>
+        <field name="driver_id" ref="driver_petrov"/>
+        <field name="vehicle_id" ref="vehicle_solaris_001"/>
+        <field name="state">draft</field>
+    </record>
+
+    <record id="waybill_sidorov" model="transport_waybill.waybill">
+        <field name="name">ПЛ-00003</field>
+        <field name="date">2026-08-08</field>
+        <field name="driver_id" ref="driver_sidorov"/>
+        <field name="vehicle_id" ref="vehicle_rio_001"/>
+        <field name="state">sent</field>
+    </record>
+
+</odoo>

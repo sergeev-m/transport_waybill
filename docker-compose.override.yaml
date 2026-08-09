@@ -1,0 +1,20 @@
+services:
+  transport_odoo:
+    ports:
+      - "${ODOO_PORT:-8069}:${ODOO_HTTP_PORT:-8069}"
+    command: ["odoo", "-u", "transport_waybill", "--dev=xml", "--without-demo=True"]
+    # command: ["odoo", "--db-filter=^$"]
+#    command: ["odoo", "--dev=xml", "--without-demo=True"]
+
+    develop: # --watch
+      watch:
+        - action: restart  # rebuild, restart
+          path: ./addons
+          target: /mnt/extra-addons
+
+    labels:
+      - "traefik.http.routers.transport-odoo.rule=Host(`transport.docker.localhost`)"
+
+  transport_odoo_db:
+    ports:
+      - "5432:5432"

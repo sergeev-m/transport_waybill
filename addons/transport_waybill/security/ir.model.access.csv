@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_transport_waybill_driver,transport_waybill.driver,model_transport_waybill_driver,base.group_user,1,1,1,1
+access_transport_waybill_vehicle,transport_waybill.vehicle,model_transport_waybill_vehicle,base.group_user,1,1,1,1
+access_transport_waybill_waybill,transport_waybill.waybill,model_transport_waybill_waybill,base.group_user,1,1,1,1
+access_transport_waybill_send_wizard,transport_waybill.send.wizard,model_transport_waybill_send_wizard,base.group_user,1,1,1,1

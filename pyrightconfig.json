@@ -1,0 +1,16 @@
+{
+  "include": ["**/*.py"],
+  "exclude": [
+    "**/__pycache__",
+    "**/.git"
+  ],
+  // "typeCheckingMode": "basic",
+  "typeCheckingMode": "off",
+  "reportMissingImports": false,
+  "reportMissingModuleSource": false,
+  "venvPath": ".",
+  "venv": "venv",
+  "extraPaths": [
+    "./odoo",
+  ]
+}

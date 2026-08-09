@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+  <!--Top menu item-->
+  <menuitem id="transport_waybill_root" name="Transport waybill">
+    <menuitem id="menu_waybill" name="Путевые листы" action="action_transport_waybill_waybill" sequence="10"/>
+    <menuitem id="menu_vehicle" name="Vehicle" action="action_transport_waybill_vehicle" sequence="20"/>
+    <menuitem id="menu_driver" name="Driver" action="action_transport_waybill_driver" sequence="30"/>
+  </menuitem>
+</odoo>
