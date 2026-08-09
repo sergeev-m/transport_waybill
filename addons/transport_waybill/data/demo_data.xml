@@ -66,7 +66,6 @@
          ============================================================ -->
 
     <record id="waybill_ivanov" model="transport_waybill.waybill">
-        <field name="name">ПЛ-00001</field>
         <field name="date">2026-08-09</field>
         <field name="driver_id" ref="driver_ivanov"/>
         <field name="vehicle_id" ref="vehicle_prius_001"/>
@@ -74,7 +73,6 @@
     </record>
 
     <record id="waybill_petrov" model="transport_waybill.waybill">
-        <field name="name">ПЛ-00002</field>
         <field name="date">2026-08-09</field>
         <field name="driver_id" ref="driver_petrov"/>
         <field name="vehicle_id" ref="vehicle_solaris_001"/>
@@ -82,7 +80,6 @@
     </record>
 
     <record id="waybill_sidorov" model="transport_waybill.waybill">
-        <field name="name">ПЛ-00003</field>
         <field name="date">2026-08-08</field>
         <field name="driver_id" ref="driver_sidorov"/>
         <field name="vehicle_id" ref="vehicle_rio_001"/>

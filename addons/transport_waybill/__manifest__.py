@@ -7,6 +7,7 @@
     # "depends": ["base", "mail"],
     "data": [
         "security/ir.model.access.csv",
+        "data/ir_sequence.xml",
         "views/transport_waybill_driver.xml",
         "views/transport_waybill_vehicle.xml",
         "views/transport_waybill_waybill.xml",

@@ -3,11 +3,18 @@ from odoo import models, fields
 
 class Waybill(models.Model):
     _name = "transport_waybill.waybill"
-    # _inherit = ['mail.thread']
     _description = "Waybill"
-    _order = "id desc, name"
+    _order = "id asc, name"
 
-    name = fields.Char(required=True)
+    name = fields.Char(
+        string="Number",
+        required=True,
+        readonly=True,
+        copy=False,
+        default=lambda self: self.env["ir.sequence"].next_by_code(
+            "transport_waybill.waybill"
+        ),
+    )
 
     driver_id = fields.Many2one("transport_waybill.driver", required=True)
     vehicle_id = fields.Many2one("transport_waybill.vehicle", required=True)
